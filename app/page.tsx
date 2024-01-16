@@ -7,7 +7,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col p-6">
       <Box className='mt-5'>
         <Heading className='text-center'>
-          Wolfftech's Webiste
+          Wolfftechs Webiste
         </Heading>
         <Flex justify={'center'}>
         <Box className='w-80 border-2 rounded-lg'>
