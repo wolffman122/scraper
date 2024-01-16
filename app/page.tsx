@@ -13,7 +13,7 @@ async function fetcher(...arg) {
 
 export default function Home() {
   const { data } = useSWR('/api/github', fetcher);
-
+  console.log(data);
   return (
     <main className="flex min-h-screen flex-col p-6">
       <Box className='mt-5'>
@@ -28,6 +28,21 @@ export default function Home() {
             <div className="p-1">
               <h4 className='inline-block' data-testid="nextjs-verion-label">Version:</h4><p className='inline'> {data ? data.version : 'Loading...'}</p>
             </div>
+            <div className="bg-blue-200">
+              Pull Requests
+            </div>
+            <ul className='list-inside list-disc'>
+              {
+                if(data)
+              {
+                data.pullRequests.forEach((pr) => (
+                  <li>pr.title</li>
+                ));
+                }
+              }
+
+
+            </ul>
           </div>
         </Flex>
 

@@ -12,12 +12,19 @@ describe('Home Render', () => {
     expect(heading).toBeInTheDocument();
   })
 
-  test('REnder Next.JS Info', () => {
+  test('REnder Next.JS Version', () => {
     render(<Home />);
     const label = screen.getByTestId('nextjs-label');
     const versionLabel = screen.getByTestId('nextjs-verion-label');
 
     expect(label).toBeInTheDocument();
     expect(versionLabel).toBeInTheDocument();
+  })
+
+  test('Render Next.JS Pull Requests', () => {
+    render(<Home />);
+    const label = screen.getByTestId('nextjs-pull-request-label');
+
+    expect(label).toBeInTheDocument();
   })
 })
