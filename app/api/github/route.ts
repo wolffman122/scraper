@@ -1,4 +1,10 @@
-export async function GET() {
+import { Octokit } from "octokit";
 
-  return Response.json({ msg: "Hello" });
+export async function GET() {
+  const octokit = new Octokit();
+
+  const response = await octokit.request("/repos/vercel/next.js/releases/latest")
+
+
+  return Response.json({ version: response.data.tag_name });
 }
