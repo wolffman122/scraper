@@ -17,5 +17,10 @@ export async function GET(request: Request) {
   });
 
 
-  return Response.json({ version: response.data.tag_name, pullRequests: pullRequests });
+  const test = Response.json({ 
+    version: response.data.tag_name,
+    pullRequests: pullRequests,
+  });
+  
+  return test;
 }

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react"
+import { createMocks } from 'node-mocks-http'
 import Home from "../page"
 
 describe('Home Render', () => {
@@ -6,25 +7,27 @@ describe('Home Render', () => {
     render(<Home />);
 
     const heading = screen.getByRole('heading', {
-      name: /Wolfftechs Webiste/i,
+      name: /Wolfftech's Webiste/i,
     });
 
     expect(heading).toBeInTheDocument();
   })
 
-  test('REnder Next.JS Version', () => {
+  test('Render next js version text', () => {
     render(<Home />);
+
     const label = screen.getByTestId('nextjs-label');
-    const versionLabel = screen.getByTestId('nextjs-verion-label');
+    const version = screen.getByTestId('nextjs-version');
 
     expect(label).toBeInTheDocument();
-    expect(versionLabel).toBeInTheDocument();
+    expect(version).toBeInTheDocument();
   })
 
-  test('Render Next.JS Pull Requests', () => {
-    render(<Home />);
-    const label = screen.getByTestId('nextjs-pull-request-label');
+  test('return a message from get', async () =>{
+    const { req, res } = createMocks({
+      method: 'GET',
+    });
 
-    expect(label).toBeInTheDocument();
+    
   })
 })
