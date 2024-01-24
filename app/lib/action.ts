@@ -6,6 +6,19 @@ import { z } from 'zod';
 
 const prisma = new PrismaClient();
 
+export async function fetchBrands() {
+  try {
+    const brands = await prisma.brands.findMany();
+
+    return brands;
+  } 
+  catch (error) 
+  {
+    console.log('Database Error:', error);
+    throw new Error('Failed to fetch brands');
+  }
+}
+
 export async function createBrand(prevState: any, formData: FormData) {
   const schema = z.object({
     name: z.string().nonempty(),
