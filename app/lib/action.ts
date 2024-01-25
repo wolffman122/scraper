@@ -2,6 +2,7 @@
 
 import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
+import { redirect } from "next/navigation";
 import { z } from 'zod';
 
 const prisma = new PrismaClient();
@@ -16,7 +17,7 @@ export async function fetchBrands() {
   {
     console.log('Database Error:', error);
     throw new Error('Failed to fetch brands');
-  }
+  } 
 }
 
 export async function createBrand(prevState: any, formData: FormData) {
@@ -47,5 +48,44 @@ export async function createBrand(prevState: any, formData: FormData) {
   {
     console.error('Database Error:', e);
     throw new Error('Failed to create brand.');
+  }
+}
+
+export async function deleteBrand(id: string) {
+  try
+  {
+    console.log('Brand delete id', id)
+    const retValue = await prisma.brands.delete({
+      where: { id },
+    });
+
+    revalidatePath('/brands');
+  }
+  catch(e)
+  {
+    console.error('Database Error:', e);
+    throw new Error('Failed to delete brand.');
+  }
+}
+
+export async function updateBrand(id: string, formData: FormData) {
+  const rawFormData = {
+    name: formData.get('name') as string,
+    website: formData.get('website') as string
+  }
+
+  try {
+    await prisma.brands.update({
+      where: { id },
+      data: rawFormData,
+    });
+
+    revalidatePath('/brands');
+    redirect('/brands');
+  } 
+  catch (error) 
+  {
+    console.log('Database Error:', error);
+    throw new Error('Failed to update brand.');
   }
 }

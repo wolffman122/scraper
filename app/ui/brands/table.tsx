@@ -1,6 +1,7 @@
 import { fetchBrands } from "@/app/lib/action";
 import clsx from "clsx";
 import Link from "next/link";
+import { DeleteBrand, UpdateBrand } from "./buttons";
 
 export default async function BrandTable() {
   const brands = await fetchBrands();
@@ -42,8 +43,8 @@ export default async function BrandTable() {
                   </td>
                   <td className="whitespace-nowrap px-3 py-3 pr-3">
                     <div className="flex justify-end gap-3">
-                      <button>Update Brand</button>
-                      <button>delete brand</button>
+                      <UpdateBrand id={brand.id} />
+                      <DeleteBrand id={brand.id} />
                     </div>
                   </td>
                 </tr>
