@@ -26,6 +26,6 @@ export async function GetRepoInfo(authorsName: string, repoName: string) {
   }
   catch(error)
   {
-    console.log(error);
+    console.log('Error', error);
   }
 }
