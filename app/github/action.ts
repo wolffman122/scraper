@@ -9,6 +9,7 @@ export async function GetRepoInfo(authorsName: string, repoName: string) {
 
     const release = await releaseResponse.json();
     const pulls = await pullsResponse.json();
+    console.log("pulls", pulls);
     
     const pullRequests = pulls.slice(0, 5).map((p) => {
       return {
